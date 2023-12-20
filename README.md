@@ -143,4 +143,62 @@ return Objects.hash(title, artist);
 }
 ```
 
+## TreeSets Example
+
+In this example, we demonstrate the use of `TreeSet` for managing and displaying scheduled events. </br>
+The use of `TreeSet` simplifies the management of events and allows for efficient retrieval in the desired order without the need for explicit sorting.
+
+#### contextLoads() Method
+
+The `contextLoads()` method is the entry point that schedules events and displays them in two different orders.
+```java
+@Test
+void contextLoads() {
+    // Creating an instance of the EventScheduler class to manage scheduled events
+    EventScheduler scheduler = new EventScheduler();
+
+    // Scheduling events with names, start dates, and durations
+    scheduler.scheduleEvent("Meeting A", LocalDate.of(2023, 1, 10), 2);
+    scheduler.scheduleEvent("Conference", LocalDate.of(2023, 1, 8), 3);
+    scheduler.scheduleEvent("Lunch", LocalDate.of(2023, 1, 12), 1);
+    scheduler.scheduleEvent("Meeting B", LocalDate.of(2023, 1, 11), 2);
+
+    // Displaying scheduled events ordered by start time
+    scheduler.displayScheduleByStartTime();
+
+    // Displaying scheduled events ordered by duration in descending order
+    scheduler.displayScheduleByDuration();
+}
+```
+
+#### EventScheduler Class
+The EventScheduler class manages the scheduling and display of events using two TreeSet instances.
+
+```java
+class EventScheduler {
+// TreeSet to store events ordered by start time
+private TreeSet<Event> eventSetByStartTime = new TreeSet<>(Comparator.comparing(Event::getStartTime));
+
+    // TreeSet to store events ordered by duration in descending order
+    private TreeSet<Event> eventSetByDuration = new TreeSet<>(Comparator.comparing(Event::getDuration).reversed());
+
+    // Method to schedule an event with a given name, start time, and duration
+    public void scheduleEvent(String eventName, LocalDate startTime, int duration) {
+        Event newEvent = new Event(eventName, startTime, duration);
+        eventSetByStartTime.add(newEvent);
+    }
+    
+    // ... Other methods for displaying events (displayScheduleByStartTime, displayScheduleByDuration)
+}
+```
+
+#### Use of `TreeSet`
+
+- **eventSetByStartTime:** This `TreeSet` is used to store events and automatically orders them based on their start times in ascending order.
+
+- **eventSetByDuration:** This `TreeSet` is used to store events and orders them based on their durations in descending order. The comparator is configured to achieve this ordering.
+
+
+
+
 
