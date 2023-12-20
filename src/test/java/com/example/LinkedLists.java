@@ -42,27 +42,27 @@ public class LinkedLists {
         } while (i >= 0);
     }
 
-    public class Playlist {
+    class Playlist {
         private LinkedList<Song> songs;
         private final Random random;
         private final Set<Integer> playedIndexes;
 
-        public Playlist() {
+        Playlist() {
             this.songs = new LinkedList<>();
             random = new Random();
             playedIndexes = new HashSet<>();
         }
 
-        public void addSong(String title, String artist) {
+        void addSong(String title, String artist) {
             Song newSong = new Song(title, artist);
             songs.addFirst(newSong);
         }
 
-        public void removeSong(String title) {
+        void removeSong(String title) {
             songs.removeIf(song -> song.getTitle().equals(title));
         }
 
-        public void displayPlaylist() {
+        void displayPlaylist() {
             for (Song song : songs) {
                 logger.info("Title: {}, Artist: {}", song.getTitle(), song.getArtist());
             }
@@ -72,7 +72,7 @@ public class LinkedLists {
             return songs.size();
         }
 
-        public void playRandomSong() {
+        void playRandomSong() {
             if (!songs.isEmpty()) {
                 int playlistSize = songs.size();
 
@@ -101,16 +101,16 @@ public class LinkedLists {
         private String title;
         private String artist;
 
-        public Song(String title, String artist) {
+        Song(String title, String artist) {
             this.title = title;
             this.artist = artist;
         }
 
-        public String getTitle() {
+        String getTitle() {
             return title;
         }
 
-        public String getArtist() {
+        String getArtist() {
             return artist;
         }
     }
