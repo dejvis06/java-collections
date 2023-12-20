@@ -1,5 +1,7 @@
 # Java Collections
 
+All classes can be found by the collection name in plural under the test package.
+
 ## LinkedLists and Playlist Management
 
 This example demonstrates the use of a LinkedList for managing a playlist of songs. The LinkedList offers advantages when the playlist size changes frequently, avoiding reallocation of memory.
@@ -15,7 +17,7 @@ The `Playlist` class includes methods for adding, removing, displaying, and play
 ##### Play Random Song
 The `playRandomSong` method selects a random song from the playlist, ensuring each song is played only once before resetting the playlist.
 
-### Example Usage in `contextLoads` Test
+#### Example Usage in `contextLoads` Test
 The `contextLoads` test demonstrates the playlist management functionalities, including adding songs, removing a song, displaying the playlist, and playing random songs.
 
 ```java
@@ -50,7 +52,7 @@ void contextLoads() throws InterruptedException {
 
 In Java, the `hashCode()` and `equals()` methods are crucial for managing object equality, and the `HashSet` collection leverages these methods for efficient storage and retrieval of unique elements.
 
-### User Class Implementation
+#### User Class Implementation
 
 ```java
 public class HashSets {
@@ -109,3 +111,36 @@ public class HashSets {
     }
 }
 ```
+## LinkedHashSet and Playlist
+
+This Java example demonstrates the usage of a `LinkedHashSet` for maintaining an ordered playlist. The `LinkedHashSet` is a collection that preserves the order of insertion, providing an ordered iteration of elements. The primary focus is on managing a playlist of songs.
+
+#### Playlist Class
+
+The `Playlist` class serves as a manager for the song playlist. It employs a `LinkedHashSet` to store songs, ensuring that the order of song insertion is maintained. Key functionalities include adding songs, removing songs, displaying the playlist, and playing random songs.
+```java
+private Set<Song> songs;
+
+public Playlist() {
+    // Using LinkedHashSet to maintain insertion order
+    this.songs = new LinkedHashSet<>();
+}
+```
+
+hashCode() & equals() work the same as HashSet:
+```java
+@Override
+public boolean equals(Object obj) {
+if (this == obj) return true;
+if (obj == null || getClass() != obj.getClass()) return false;
+Song otherSong = (Song) obj;
+return Objects.equals(title, otherSong.title) && Objects.equals(artist, otherSong.artist);
+}
+
+@Override
+public int hashCode() {
+return Objects.hash(title, artist);
+}
+```
+
+
