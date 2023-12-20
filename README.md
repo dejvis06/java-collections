@@ -4,9 +4,7 @@
 
 This example demonstrates the use of a LinkedList for managing a playlist of songs. The LinkedList offers advantages when the playlist size changes frequently, avoiding reallocation of memory.
 
-### LinkedList Efficiency
-
-### Dynamic Size Changes
+### LinkedList Efficiency in Dynamic Size Changes
 LinkedList is more efficient than ArrayList when the size changes frequently. Unlike ArrayList, LinkedList doesn't require reallocation of memory. Each element in LinkedList is stored in a separate node with references to the next and previous nodes, providing flexibility in dynamic size changes.
 
 ### Playlist Management
