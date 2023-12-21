@@ -48,7 +48,7 @@ void contextLoads() throws InterruptedException {
 }
 ```
 
-## Understanding hashCode(), equals(), and HashSet in Java
+## HashSet, hashCode() and equals()
 
 In Java, the `hashCode()` and `equals()` methods are crucial for managing object equality, and the `HashSet` collection leverages these methods for efficient storage and retrieval of unique elements.
 
@@ -198,6 +198,65 @@ private TreeSet<Event> eventSetByStartTime = new TreeSet<>(Comparator.comparing(
 
 - **eventSetByDuration:** This `TreeSet` is used to store events and orders them based on their durations in descending order. The comparator is configured to achieve this ordering.
 
+## PriorityQueues Example
+
+#### Task Class
+
+The `Task` class represents a task with a name and priority. It implements the `Comparable` interface to define the natural ordering based on priority.
+
+```java
+class Task implements Comparable<Task> {
+    private String name;
+    private int priority;
+
+    // Constructor to initialize task with a name and priority
+    public Task(String name, int priority) {
+        this.name = name;
+        this.priority = priority;
+    }
+
+    // CompareTo method from Comparable interface
+    @Override
+    public int compareTo(Task other) {
+        // Higher priority tasks come first, so reverse the order
+        return Integer.compare(other.priority, this.priority);
+    }
+
+    // toString method to provide a string representation of the Task
+    @Override
+    public String toString() {
+        return "Task{" +
+                "name='" + name + '\'' +
+                ", priority=" + priority +
+                '}';
+    }
+}
+```
+
+#### Main Test Method
+The contextLoads method in the PriorityQueues class initializes a PriorityQueue of Task objects, adds tasks with different priorities, and processes tasks in order of priority using the poll() method.
+
+```java
+@Test
+void contextLoads() {
+PriorityQueue<Task> taskQueue = new PriorityQueue<>();
+
+    // Adding tasks with different priorities to the PriorityQueue
+    taskQueue.add(new Task("Task A", 3));
+    taskQueue.add(new Task("Task B", 1));
+    taskQueue.add(new Task("Task C", 2));
+
+    // Processing tasks in order of priority
+    while (!taskQueue.isEmpty()) {
+        // Dequeue the task with the highest priority
+        Task task = taskQueue.poll();
+
+        // Display information about the task being processed
+        System.out.println("Processing: " + task);
+    }
+}
+```
+The tasks are processed based on their priority, and the compareTo method in the Task class defines the ordering within the PriorityQueue.
 
 
 
